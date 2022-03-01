@@ -1,0 +1,23 @@
+/* FLEXBOX */
+#deck,
+#communityCards,
+#player,
+#flop,
+#turn,
+#river {
+  display: flex;
+}
+
+/* SUIT COLORS */
+.hearts {
+  background-color: crimson;
+}
+.diamonds {
+  background-color: lightcoral;
+}
+.spades {
+  background-color: grey;
+}
+.clubs {
+  background-color: azure;
+}
