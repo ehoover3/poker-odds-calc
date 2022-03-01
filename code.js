@@ -1,6 +1,7 @@
 // data
 let players = 2;
 let playerA = [];
+
 let flopData = [];
 let turnData = [];
 let riverData = [];
@@ -145,3 +146,5 @@ getStraight();
 getFlush();
 getFullHouse();
 getFourOfAKind();
+getStraightFlush();
+getRoyalFlush();
