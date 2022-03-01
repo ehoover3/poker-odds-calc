@@ -1,23 +1,353 @@
-const ROYAL_FLUSH = { name: "ROYAL_FLUSH", value: 9 };
-const STRAIGHT_FLUSH = { name: "STRAIGHT_FLUSH", value: 8 };
-const FOUR_OF_A_KIND = { name: "FOUR_OF_A_KIND", value: 7 };
-const FULL_HOUSE = { name: "FULL_HOUSE", value: 6 };
-const FLUSH = { name: "FLUSH", value: 5 };
-const STRAIGHT = { name: "STRAIGHT", value: 4 };
-const THREE_OF_A_KIND = { name: "THREE_OF_A_KIND", value: 3 };
-const TWO_PAIR = { name: "TWO_PAIR", value: 2 };
-const PAIR = { name: "PAIR", value: 1 };
-const HIGH_CARD = { name: "HIGH_CARD", value: 0 };
+function getStraightorRoyalFlush() {
+  let cards = [...playerA, ...flopData, ...turnData, ...riverData];
+  let isRoyalFlush = "n/a";
+  let isStraightFlush = "n/a";
 
-const playerHand = document.querySelector("#playerHand");
+  let playerHand = [
+    cards[0].name,
+    cards[1].name,
+    cards[2].name,
+    cards[3].name,
+    cards[4].name,
+    cards[5].name,
+    cards[6].name,
+  ];
 
-function getRoyalFlush() {
-  let isRoyalFlush = "???";
-  console.log(`Royal Flush -----> ${isRoyalFlush}`);
-}
-function getStraightFlush() {
-  let isStraightFlush = "???";
+  if (
+    playerHand.some((c) => c === "A♥") &&
+    playerHand.some((c) => c === "K♥") &&
+    playerHand.some((c) => c === "Q♥") &&
+    playerHand.some((c) => c === "J♥") &&
+    playerHand.some((c) => c === "T♥")
+  )
+    isStraightFlush = "Ace High Straight Flush";
+  if (
+    playerHand.some((c) => c === "A♦") &&
+    playerHand.some((c) => c === "K♦") &&
+    playerHand.some((c) => c === "Q♦") &&
+    playerHand.some((c) => c === "J♦") &&
+    playerHand.some((c) => c === "T♦")
+  )
+    isStraightFlush = "Ace High Straight Flush";
+  if (
+    playerHand.some((c) => c === "A♠") &&
+    playerHand.some((c) => c === "K♠") &&
+    playerHand.some((c) => c === "Q♠") &&
+    playerHand.some((c) => c === "J♠") &&
+    playerHand.some((c) => c === "T♠")
+  )
+    isStraightFlush = "Ace High Straight Flush";
+  if (
+    playerHand.some((c) => c === "A♣") &&
+    playerHand.some((c) => c === "K♣") &&
+    playerHand.some((c) => c === "Q♣") &&
+    playerHand.some((c) => c === "J♣") &&
+    playerHand.some((c) => c === "T♣")
+  )
+    isStraightFlush = "Ace High Straight Flush";
+
+  if (
+    playerHand.some((c) => c === "K♥") &&
+    playerHand.some((c) => c === "Q♥") &&
+    playerHand.some((c) => c === "J♥") &&
+    playerHand.some((c) => c === "T♥") &&
+    playerHand.some((c) => c === "9♥")
+  )
+    isStraightFlush = "King High Straight Flush";
+  if (
+    playerHand.some((c) => c === "K♦") &&
+    playerHand.some((c) => c === "Q♦") &&
+    playerHand.some((c) => c === "J♦") &&
+    playerHand.some((c) => c === "T♦") &&
+    playerHand.some((c) => c === "9♦")
+  )
+    isStraightFlush = "King High Straight Flush";
+  if (
+    playerHand.some((c) => c === "K♠") &&
+    playerHand.some((c) => c === "Q♠") &&
+    playerHand.some((c) => c === "J♠") &&
+    playerHand.some((c) => c === "T♠") &&
+    playerHand.some((c) => c === "9♠")
+  )
+    isStraightFlush = "King High Straight Flush";
+  if (
+    playerHand.some((c) => c === "K♣") &&
+    playerHand.some((c) => c === "Q♣") &&
+    playerHand.some((c) => c === "J♣") &&
+    playerHand.some((c) => c === "T♣") &&
+    playerHand.some((c) => c === "9♣")
+  )
+    isStraightFlush = "King High Straight Flush";
+
+  if (
+    playerHand.some((c) => c === "Q♥") &&
+    playerHand.some((c) => c === "J♥") &&
+    playerHand.some((c) => c === "T♥") &&
+    playerHand.some((c) => c === "9♥") &&
+    playerHand.some((c) => c === "8♥")
+  )
+    isStraightFlush = "Queen High Straight Flush";
+  if (
+    playerHand.some((c) => c === "Q♦") &&
+    playerHand.some((c) => c === "J♦") &&
+    playerHand.some((c) => c === "T♦") &&
+    playerHand.some((c) => c === "9♦") &&
+    playerHand.some((c) => c === "8♦")
+  )
+    isStraightFlush = "Queen High Straight Flush";
+  if (
+    playerHand.some((c) => c === "Q♠") &&
+    playerHand.some((c) => c === "J♠") &&
+    playerHand.some((c) => c === "T♠") &&
+    playerHand.some((c) => c === "9♠") &&
+    playerHand.some((c) => c === "8♠")
+  )
+    isStraightFlush = "Queen High Straight Flush";
+  if (
+    playerHand.some((c) => c === "Q♣") &&
+    playerHand.some((c) => c === "J♣") &&
+    playerHand.some((c) => c === "T♣") &&
+    playerHand.some((c) => c === "9♣") &&
+    playerHand.some((c) => c === "8♣")
+  )
+    isStraightFlush = "Queen High Straight Flush";
+
+  if (
+    playerHand.some((c) => c === "J♥") &&
+    playerHand.some((c) => c === "T♥") &&
+    playerHand.some((c) => c === "9♥") &&
+    playerHand.some((c) => c === "8♥") &&
+    playerHand.some((c) => c === "7♥")
+  )
+    isStraightFlush = "Jack High Straight Flush";
+  if (
+    playerHand.some((c) => c === "J♦") &&
+    playerHand.some((c) => c === "T♦") &&
+    playerHand.some((c) => c === "9♦") &&
+    playerHand.some((c) => c === "8♦") &&
+    playerHand.some((c) => c === "7♦")
+  )
+    isStraightFlush = "Jack High Straight Flush";
+  if (
+    playerHand.some((c) => c === "J♠") &&
+    playerHand.some((c) => c === "T♠") &&
+    playerHand.some((c) => c === "9♠") &&
+    playerHand.some((c) => c === "8♠") &&
+    playerHand.some((c) => c === "7♠")
+  )
+    isStraightFlush = "Jack High Straight Flush";
+  if (
+    playerHand.some((c) => c === "J♣") &&
+    playerHand.some((c) => c === "T♣") &&
+    playerHand.some((c) => c === "9♣") &&
+    playerHand.some((c) => c === "8♣") &&
+    playerHand.some((c) => c === "7♣")
+  )
+    isStraightFlush = "Jack High Straight Flush";
+
+  if (
+    playerHand.some((c) => c === "T♥") &&
+    playerHand.some((c) => c === "9♥") &&
+    playerHand.some((c) => c === "8♥") &&
+    playerHand.some((c) => c === "7♥") &&
+    playerHand.some((c) => c === "6♥")
+  )
+    isStraightFlush = "Ten High Straight Flush";
+  if (
+    playerHand.some((c) => c === "T♦") &&
+    playerHand.some((c) => c === "9♦") &&
+    playerHand.some((c) => c === "8♦") &&
+    playerHand.some((c) => c === "7♦") &&
+    playerHand.some((c) => c === "6♦")
+  )
+    isStraightFlush = "Ten High Straight Flush";
+  if (
+    playerHand.some((c) => c === "T♠") &&
+    playerHand.some((c) => c === "9♠") &&
+    playerHand.some((c) => c === "8♠") &&
+    playerHand.some((c) => c === "7♠") &&
+    playerHand.some((c) => c === "6♠")
+  )
+    isStraightFlush = "Ten High Straight Flush";
+  if (
+    playerHand.some((c) => c === "T♣") &&
+    playerHand.some((c) => c === "9♣") &&
+    playerHand.some((c) => c === "8♣") &&
+    playerHand.some((c) => c === "7♣") &&
+    playerHand.some((c) => c === "6♣")
+  )
+    isStraightFlush = "Ten High Straight Flush";
+
+  if (
+    playerHand.some((c) => c === "9♥") &&
+    playerHand.some((c) => c === "8♥") &&
+    playerHand.some((c) => c === "7♥") &&
+    playerHand.some((c) => c === "6♥") &&
+    playerHand.some((c) => c === "5♥")
+  )
+    isStraightFlush = "Nine High Straight Flush";
+  if (
+    playerHand.some((c) => c === "9♦") &&
+    playerHand.some((c) => c === "8♦") &&
+    playerHand.some((c) => c === "7♦") &&
+    playerHand.some((c) => c === "6♦") &&
+    playerHand.some((c) => c === "5♦")
+  )
+    isStraightFlush = "Nine High Straight Flush";
+  if (
+    playerHand.some((c) => c === "9♠") &&
+    playerHand.some((c) => c === "8♠") &&
+    playerHand.some((c) => c === "7♠") &&
+    playerHand.some((c) => c === "6♠") &&
+    playerHand.some((c) => c === "5♠")
+  )
+    isStraightFlush = "Nine High Straight Flush";
+  if (
+    playerHand.some((c) => c === "9♣") &&
+    playerHand.some((c) => c === "8♣") &&
+    playerHand.some((c) => c === "7♣") &&
+    playerHand.some((c) => c === "6♣") &&
+    playerHand.some((c) => c === "5♣")
+  )
+    isStraightFlush = "Nine High Straight Flush";
+
+  if (
+    playerHand.some((c) => c === "8♥") &&
+    playerHand.some((c) => c === "7♥") &&
+    playerHand.some((c) => c === "6♥") &&
+    playerHand.some((c) => c === "5♥") &&
+    playerHand.some((c) => c === "4♥")
+  )
+    isStraightFlush = "Eight High Straight Flush";
+  if (
+    playerHand.some((c) => c === "8♦") &&
+    playerHand.some((c) => c === "7♦") &&
+    playerHand.some((c) => c === "6♦") &&
+    playerHand.some((c) => c === "5♦") &&
+    playerHand.some((c) => c === "4♦")
+  )
+    isStraightFlush = "Eight High Straight Flush";
+  if (
+    playerHand.some((c) => c === "8♠") &&
+    playerHand.some((c) => c === "7♠") &&
+    playerHand.some((c) => c === "6♠") &&
+    playerHand.some((c) => c === "5♠") &&
+    playerHand.some((c) => c === "4♠")
+  )
+    isStraightFlush = "Eight High Straight Flush";
+  if (
+    playerHand.some((c) => c === "8♣") &&
+    playerHand.some((c) => c === "7♣") &&
+    playerHand.some((c) => c === "6♣") &&
+    playerHand.some((c) => c === "5♣") &&
+    playerHand.some((c) => c === "4♣")
+  )
+    isStraightFlush = "Eight High Straight Flush";
+
+  if (
+    playerHand.some((c) => c === "7♥") &&
+    playerHand.some((c) => c === "6♥") &&
+    playerHand.some((c) => c === "5♥") &&
+    playerHand.some((c) => c === "4♥") &&
+    playerHand.some((c) => c === "3♥")
+  )
+    isStraightFlush = "Seven High Straight Flush";
+  if (
+    playerHand.some((c) => c === "7♦") &&
+    playerHand.some((c) => c === "6♦") &&
+    playerHand.some((c) => c === "5♦") &&
+    playerHand.some((c) => c === "4♦") &&
+    playerHand.some((c) => c === "3♦")
+  )
+    isStraightFlush = "Seven High Straight Flush";
+  if (
+    playerHand.some((c) => c === "7♠") &&
+    playerHand.some((c) => c === "6♠") &&
+    playerHand.some((c) => c === "5♠") &&
+    playerHand.some((c) => c === "4♠") &&
+    playerHand.some((c) => c === "3♠")
+  )
+    isStraightFlush = "Seven High Straight Flush";
+  if (
+    playerHand.some((c) => c === "7♣") &&
+    playerHand.some((c) => c === "6♣") &&
+    playerHand.some((c) => c === "5♣") &&
+    playerHand.some((c) => c === "4♣") &&
+    playerHand.some((c) => c === "3♣")
+  )
+    isStraightFlush = "Seven High Straight Flush";
+
+  if (
+    playerHand.some((c) => c === "6♥") &&
+    playerHand.some((c) => c === "5♥") &&
+    playerHand.some((c) => c === "4♥") &&
+    playerHand.some((c) => c === "3♥") &&
+    playerHand.some((c) => c === "2♥")
+  )
+    isStraightFlush = "Six High Straight Flush";
+  if (
+    playerHand.some((c) => c === "6♦") &&
+    playerHand.some((c) => c === "5♦") &&
+    playerHand.some((c) => c === "4♦") &&
+    playerHand.some((c) => c === "3♦") &&
+    playerHand.some((c) => c === "2♦")
+  )
+    isStraightFlush = "Six High Straight Flush";
+  if (
+    playerHand.some((c) => c === "6♠") &&
+    playerHand.some((c) => c === "5♠") &&
+    playerHand.some((c) => c === "4♠") &&
+    playerHand.some((c) => c === "3♠") &&
+    playerHand.some((c) => c === "2♠")
+  )
+    isStraightFlush = "Six High Straight Flush";
+  if (
+    playerHand.some((c) => c === "6♣") &&
+    playerHand.some((c) => c === "5♣") &&
+    playerHand.some((c) => c === "4♣") &&
+    playerHand.some((c) => c === "3♣") &&
+    playerHand.some((c) => c === "2♣")
+  )
+    isStraightFlush = "Six High Straight Flush";
+
+  if (
+    playerHand.some((c) => c === "5♥") &&
+    playerHand.some((c) => c === "4♥") &&
+    playerHand.some((c) => c === "3♥") &&
+    playerHand.some((c) => c === "2♥") &&
+    playerHand.some((c) => c === "A♥")
+  )
+    isStraightFlush = "Five High Straight Flush";
+  if (
+    playerHand.some((c) => c === "5♦") &&
+    playerHand.some((c) => c === "4♦") &&
+    playerHand.some((c) => c === "3♦") &&
+    playerHand.some((c) => c === "2♦") &&
+    playerHand.some((c) => c === "A♦")
+  )
+    isStraightFlush = "Five High Straight Flush";
+  if (
+    playerHand.some((c) => c === "5♠") &&
+    playerHand.some((c) => c === "4♠") &&
+    playerHand.some((c) => c === "3♠") &&
+    playerHand.some((c) => c === "2♠") &&
+    playerHand.some((c) => c === "A♠")
+  )
+    isStraightFlush = "Five High Straight Flush";
+  if (
+    playerHand.some((c) => c === "5♣") &&
+    playerHand.some((c) => c === "4♣") &&
+    playerHand.some((c) => c === "3♣") &&
+    playerHand.some((c) => c === "2♣") &&
+    playerHand.some((c) => c === "A♣")
+  )
+    isStraightFlush = "Five High Straight Flush";
+
   console.log(`Straight Flush --> ${isStraightFlush}`);
+  if (isStraightFlush === "Ace High Straight Flush") {
+    isRoyalFlush = "Royal Flush";
+  }
+  console.log(`Royal Flush -----> ${isRoyalFlush}`);
 }
 function getFourOfAKind() {
   let cards = [...playerA, ...flopData, ...turnData, ...riverData];
