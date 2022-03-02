@@ -1,14 +1,19 @@
+// choose number of players
+players = 2;
+
 // run program
-shuffleDeck();
-shuffleDeck();
-shuffleDeck();
-shuffleDeck();
-shuffleDeck();
+for (let i = 0; i < 15; i++) {
+  shuffleDeck();
+}
 renderDeck();
 
 // deal player cards
-dealPlayerCards();
-renderPlayerCards();
+dealPlayerCards("Player A");
+renderPlayerCards("Player A");
+
+dealPlayerCards("Player B");
+renderPlayerCards("Player B");
+
 renderDeck();
 
 // deal flop
@@ -27,12 +32,12 @@ renderRiver();
 renderDeck();
 
 // check win
-getHighCard();
-getPair();
-getTwoPair();
-getThreeOfAKind();
-getStraight();
-getFlush();
-getFullHouse();
-getFourOfAKind();
 getStraightorRoyalFlush();
+getFourOfAKind();
+getFullHouse();
+getFlush();
+getStraight();
+getThreeOfAKind();
+getTwoPair();
+getPair();
+getHighCard();

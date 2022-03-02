@@ -104,17 +104,23 @@ function renderDeck() {
   });
 }
 
-function renderPlayerCards() {
+function renderPlayerCards(player) {
+  let playerDiv = document.createElement("div");
+  playerDiv.textContent = player;
+  playerDiv.className = "player";
+
   playerA.forEach((card) => {
-    let div = document.createElement("div");
-    div.textContent = card.card;
+    let cardDiv = document.createElement("div");
+    cardDiv.textContent = card.card;
+    cardDiv.className = "player";
     let suit = card.name.split("").splice(1)[0];
-    if (suit === "♥") div.className = "hearts";
-    if (suit === "♦") div.className = "diamonds";
-    if (suit === "♠") div.className = "spades";
-    if (suit === "♣") div.className = "clubs";
-    playerDiv.append(div);
+    if (suit === "♥") cardDiv.classList.add("hearts");
+    if (suit === "♦") cardDiv.classList.add("diamonds");
+    if (suit === "♠") cardDiv.classList.add("spades");
+    if (suit === "♣") cardDiv.classList.add("clubs");
+    playerDiv.append(cardDiv);
   });
+  playersDiv.append(playerDiv);
 }
 
 function renderFlop() {

@@ -521,7 +521,34 @@ function getFlush() {
   let cards = [...playerA, ...flopData, ...turnData, ...riverData];
   let flush = "n/a";
 
-  let playerHand = {
+  let playerHand = [
+    cards[0].value,
+    cards[1].value,
+    cards[2].value,
+    cards[3].value,
+    cards[4].value,
+    cards[5].value,
+    cards[6].value,
+  ];
+
+  let max = Math.max(...playerHand);
+  if (max === 14) max = "Ace";
+  if (max === 13) max = "King";
+  if (max === 12) max = "Queen";
+  if (max === 11) max = "Jack";
+  if (
+    max === 2 ||
+    max === 3 ||
+    max === 4 ||
+    max === 5 ||
+    max === 6 ||
+    max === 7 ||
+    max === 8 ||
+    max === 9 ||
+    max === 10
+  )
+    max = String(max);
+  let playerHandSuits = {
     heart: 0,
     diamond: 0,
     spade: 0,
@@ -529,16 +556,16 @@ function getFlush() {
   };
 
   for (let i = 0; i < cards.length; i++) {
-    if (cards[i].suit === "♥") playerHand.heart += 1;
-    if (cards[i].suit === "♦") playerHand.diamond += 1;
-    if (cards[i].suit === "♠") playerHand.spade += 1;
-    if (cards[i].suit === "♣") playerHand.club += 1;
+    if (cards[i].suit === "♥") playerHandSuits.heart += 1;
+    if (cards[i].suit === "♦") playerHandSuits.diamond += 1;
+    if (cards[i].suit === "♠") playerHandSuits.spade += 1;
+    if (cards[i].suit === "♣") playerHandSuits.club += 1;
   }
 
-  if (playerHand.heart >= 5) flush = "Hearts Flush";
-  if (playerHand.diamond >= 5) flush = "Diamonds Flush";
-  if (playerHand.club >= 5) flush = "Clubs Flush";
-  if (playerHand.spade >= 5) flush = "Spades Flush";
+  if (playerHandSuits.heart >= 5) flush = `${max} High Flush (Hearts)`;
+  if (playerHandSuits.diamond >= 5) flush = `${max} High Flush (Diamonds)`;
+  if (playerHandSuits.club >= 5) flush = `${max} High Flush (Clubs)`;
+  if (playerHandSuits.spade >= 5) flush = `${max} High Flush (Spades)`;
 
   console.log(`Flush -----------> ${flush}`);
 }
@@ -713,10 +740,12 @@ function getThreeOfAKind() {
 
   console.log(`Three of a Kind -> ${isThreeOfAKind}`);
 }
-function getTwoPair() {
+function getPairOrTwoPair() {
   let cards = [...playerA, ...flopData, ...turnData, ...riverData];
   let twoPair = "n/a";
+  let pair = "n/a";
 
+  // data
   let playerHand = {
     two: 0,
     three: 0,
@@ -749,6 +778,7 @@ function getTwoPair() {
     if (cards[i].value === 14) playerHand.ace += 1;
   }
 
+  // two pair
   if (playerHand.ace >= 2 && playerHand.king >= 2) twoPair = "Aces over Kings";
   else if (playerHand.ace >= 2 && playerHand.queen >= 2) twoPair = "Aces over Queens";
   else if (playerHand.ace >= 2 && playerHand.jack >= 2) twoPair = "Aces over Jacks";
@@ -828,44 +858,7 @@ function getTwoPair() {
   else if (playerHand.four >= 2 && playerHand.two >= 2) twoPair = "4's over 2's";
   else if (playerHand.three >= 2 && playerHand.two >= 2) twoPair = "3's over 2's";
 
-  console.log(`Two Pair --------> ${twoPair}`);
-}
-function getPair() {
-  let cards = [...playerA, ...flopData, ...turnData, ...riverData];
-  let isPair = false;
-  let pair = "n/a";
-  let playerHand = {
-    two: 0,
-    three: 0,
-    four: 0,
-    five: 0,
-    six: 0,
-    seven: 0,
-    eight: 0,
-    nine: 0,
-    ten: 0,
-    jack: 0,
-    queen: 0,
-    king: 0,
-    ace: 0,
-  };
-
-  for (let i = 0; i < cards.length; i++) {
-    if (cards[i].value === 2) playerHand.two += 1;
-    if (cards[i].value === 3) playerHand.three += 1;
-    if (cards[i].value === 4) playerHand.four += 1;
-    if (cards[i].value === 5) playerHand.five += 1;
-    if (cards[i].value === 6) playerHand.six += 1;
-    if (cards[i].value === 7) playerHand.seven += 1;
-    if (cards[i].value === 8) playerHand.eight += 1;
-    if (cards[i].value === 9) playerHand.nine += 1;
-    if (cards[i].value === 10) playerHand.ten += 1;
-    if (cards[i].value === 11) playerHand.jack += 1;
-    if (cards[i].value === 12) playerHand.queen += 1;
-    if (cards[i].value === 13) playerHand.king += 1;
-    if (cards[i].value === 14) playerHand.ace += 1;
-  }
-
+  // pair
   if (playerHand.ace >= 2) pair = "Pair of Aces";
   else if (playerHand.king >= 2) pair = "Pair of Kings";
   else if (playerHand.queen >= 2) pair = "Pair of Queens";
@@ -879,8 +872,56 @@ function getPair() {
   else if (playerHand.four >= 2) pair = "Pair of 4's";
   else if (playerHand.three >= 2) pair = "Pair of 3's";
   else if (playerHand.two >= 2) pair = "Pair of 2's";
-
+  console.log(`Two Pair --------> ${twoPair}`);
   console.log(`Pair ------------> ${pair}`);
+}
+function getPair() {
+  // let cards = [...playerA, ...flopData, ...turnData, ...riverData];
+  // let pair = "n/a";
+  // let playerHand = {
+  //   two: 0,
+  //   three: 0,
+  //   four: 0,
+  //   five: 0,
+  //   six: 0,
+  //   seven: 0,
+  //   eight: 0,
+  //   nine: 0,
+  //   ten: 0,
+  //   jack: 0,
+  //   queen: 0,
+  //   king: 0,
+  //   ace: 0,
+  // };
+  // for (let i = 0; i < cards.length; i++) {
+  //   if (cards[i].value === 2) playerHand.two += 1;
+  //   if (cards[i].value === 3) playerHand.three += 1;
+  //   if (cards[i].value === 4) playerHand.four += 1;
+  //   if (cards[i].value === 5) playerHand.five += 1;
+  //   if (cards[i].value === 6) playerHand.six += 1;
+  //   if (cards[i].value === 7) playerHand.seven += 1;
+  //   if (cards[i].value === 8) playerHand.eight += 1;
+  //   if (cards[i].value === 9) playerHand.nine += 1;
+  //   if (cards[i].value === 10) playerHand.ten += 1;
+  //   if (cards[i].value === 11) playerHand.jack += 1;
+  //   if (cards[i].value === 12) playerHand.queen += 1;
+  //   if (cards[i].value === 13) playerHand.king += 1;
+  //   if (cards[i].value === 14) playerHand.ace += 1;
+  // }
+  // if (playerHand.ace >= 2) pair = "Pair of Aces";
+  // else if (playerHand.king >= 2) pair = "Pair of Kings";
+  // else if (playerHand.queen >= 2) pair = "Pair of Queens";
+  // else if (playerHand.jack >= 2) pair = "Pair of Jacks";
+  // else if (playerHand.ten >= 2) pair = "Pair of 10's";
+  // else if (playerHand.nine >= 2) pair = "Pair of 9's";
+  // else if (playerHand.eight >= 2) pair = "Pair of 8's";
+  // else if (playerHand.seven >= 2) pair = "Pair of 7's";
+  // else if (playerHand.six >= 2) pair = "Pair of 6's";
+  // else if (playerHand.five >= 2) pair = "Pair of 5's";
+  // else if (playerHand.four >= 2) pair = "Pair of 4's";
+  // else if (playerHand.three >= 2) pair = "Pair of 3's";
+  // else if (playerHand.two >= 2) pair = "Pair of 2's";
+  // console.log(`Pair ------------> ${pair}`);
 }
 function getHighCard() {
   let cards = [...playerA, ...flopData, ...turnData, ...riverData];
@@ -933,3 +974,5 @@ function getHighCard() {
 
   console.log(`High Card -------> ${highCard}`);
 }
+
+// 963 lines of code before refactoring

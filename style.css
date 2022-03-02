@@ -1,11 +1,16 @@
 /* FLEXBOX */
 #deck,
 #communityCards,
-#player,
+#players,
+.player,
 #flop,
 #turn,
 #river {
   display: flex;
+}
+
+#players {
+  flex-direction: column;
 }
 
 /* SUIT COLORS */
