@@ -32,12 +32,4 @@ renderRiver();
 renderDeck();
 
 // check win
-getStraightorRoyalFlush();
-getFourOfAKind();
-getFullHouse();
-getFlush();
-getStraight();
-getThreeOfAKind();
-getTwoPair();
-getPair();
-getHighCard();
+getBestHand();
