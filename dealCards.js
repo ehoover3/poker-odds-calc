@@ -70,7 +70,7 @@ function shuffleDeck() {
 function dealPlayerCards() {
   let cardA = deckData.pop();
   let cardB = deckData.pop();
-  playerA = [cardA, cardB];
+  return [cardA, cardB];
 }
 
 function dealFlop() {
@@ -88,76 +88,4 @@ function dealTurn() {
 function dealRiver() {
   let cardA = deckData.pop();
   riverData = [cardA];
-}
-
-function renderDeck() {
-  deckDiv.innerHTML = "";
-  deckData.forEach((card) => {
-    let div = document.createElement("div");
-    div.textContent = card.card;
-    let suit = card.name.split("").splice(1)[0];
-    if (suit === "♥") div.className = "hearts";
-    if (suit === "♦") div.className = "diamonds";
-    if (suit === "♠") div.className = "spades";
-    if (suit === "♣") div.className = "clubs";
-    deckDiv.append(div);
-  });
-}
-
-function renderPlayerCards(player) {
-  let playerDiv = document.createElement("div");
-  playerDiv.textContent = player;
-  playerDiv.className = "player";
-
-  playerA.forEach((card) => {
-    let cardDiv = document.createElement("div");
-    cardDiv.textContent = card.card;
-    cardDiv.className = "player";
-    let suit = card.name.split("").splice(1)[0];
-    if (suit === "♥") cardDiv.classList.add("hearts");
-    if (suit === "♦") cardDiv.classList.add("diamonds");
-    if (suit === "♠") cardDiv.classList.add("spades");
-    if (suit === "♣") cardDiv.classList.add("clubs");
-    playerDiv.append(cardDiv);
-  });
-  playersDiv.append(playerDiv);
-}
-
-function renderFlop() {
-  flopData.forEach((card) => {
-    let div = document.createElement("div");
-    div.textContent = card.card;
-    let suit = card.name.split("").splice(1)[0];
-    if (suit === "♥") div.className = "hearts";
-    if (suit === "♦") div.className = "diamonds";
-    if (suit === "♠") div.className = "spades";
-    if (suit === "♣") div.className = "clubs";
-    flopDiv.append(div);
-  });
-}
-
-function renderTurn() {
-  turnData.forEach((card) => {
-    let div = document.createElement("div");
-    div.textContent = card.card;
-    let suit = card.name.split("").splice(1)[0];
-    if (suit === "♥") div.className = "hearts";
-    if (suit === "♦") div.className = "diamonds";
-    if (suit === "♠") div.className = "spades";
-    if (suit === "♣") div.className = "clubs";
-    turnDiv.append(div);
-  });
-}
-
-function renderRiver() {
-  riverData.forEach((card) => {
-    let div = document.createElement("div");
-    div.textContent = card.card;
-    let suit = card.name.split("").splice(1)[0];
-    if (suit === "♥") div.className = "hearts";
-    if (suit === "♦") div.className = "diamonds";
-    if (suit === "♠") div.className = "spades";
-    if (suit === "♣") div.className = "clubs";
-    riverDiv.append(div);
-  });
 }

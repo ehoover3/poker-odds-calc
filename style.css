@@ -3,6 +3,7 @@
 #communityCards,
 #players,
 .player,
+.playerCards,
 #flop,
 #turn,
 #river {
@@ -10,6 +11,10 @@
 }
 
 #players {
+  flex-direction: column;
+}
+
+.player {
   flex-direction: column;
 }
 
